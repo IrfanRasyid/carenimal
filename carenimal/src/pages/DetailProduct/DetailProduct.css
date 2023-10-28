@@ -1,49 +1,104 @@
 .product-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 80%;
-  margin: auto;
+  justify-content: space-around;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-left: 400px;
+  margin-right: auto;
+}
+
+.product-details {
+  flex: 1;
   padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-top: 20px;
+}
+
+.product-details h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.product-details p {
+  margin-bottom: 10px;
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.quantity-container label {
+  margin-right: 10px;
+}
+
+.quantity-container button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.purchase-button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .product-image {
   flex: 1;
 }
 
-.product-details {
-  flex: 1;
-  padding-left: 20px;
+.product-image img {
+  width: 200px; /* Menentukan lebar gambar */
+  height: 200px; /* Menentukan tinggi gambar */
+  object-fit: cover;
 }
 
-.quantity-container {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+/* Bootstrap Classes */
+
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.quantity-container button {
-  padding: 3px 8px;
-  margin: 0 3px;
-  font-size: 12px;
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }
 
-.quantity-container input {
-  width: 40px;
-  padding: 3px;
-  margin: 0 5px;
-  font-size: 12px;
+.btn-primary:hover {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
 }
 
-.purchase-button {
-  background-color: #2072A9;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-top: 10px;
-  cursor: pointer;
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
 }
+
+.btn-success:hover {
+  color: #fff;
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+
+

@@ -33,10 +33,9 @@ const Card = () => {
                 {data &&
                     data.map((product) => (
                         <Col key={product.id}>
-                            <div
-                                className="card bg-base-100 shadow"
-                                style={{ backgroundColor: '#C7EBFF', width: '200px', height: '300px', flexShrink: 0 }}
-                            >
+                             <div className="card bg-base-100 shadow custom-card"
+                                 style={{ backgroundColor: '#C7EBFF', width: '200px', height: 'auto', flexShrink: 'auto' }}
+                                 >
                                 <img src={product.image} className="card-img-top" alt={product.name} />
                                 <div className="card-body">
                                     <h5 className="card-title">{product.name}</h5>

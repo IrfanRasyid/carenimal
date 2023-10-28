@@ -29,13 +29,27 @@ function DetailProduct() {
 
   const addToCart = () => {
     // Logika untuk menambahkan produk ke keranjang
-    // Anda dapat mengimplementasikan logika penyimpanan sesuai kebutuhan aplikasi Anda
     console.log(`Adding ${quantity} of ${product.name} to cart`);
-  };
+  
+    // Mengonfigurasi data yang akan dikirim ke halaman Cart
+    const dataToAdd = {
+      productName: product.name,
+      productPrice: product.price,
+      quantity: quantity,
+      productImage: product.image, // Pastikan properti productImage ditambahkan di sini
+    };
+  
+    // Menggunakan URLSearchParams untuk membuat query string dari data yang akan dikirim
+    const queryString = new URLSearchParams(dataToAdd).toString();
+  
+    // Mengarahkan pengguna ke halaman Cart sambil membawa data
+    window.location.href = `/cart?${queryString}`;
+  };  
 
   if (!product) {
     return <div>Loading...</div>;
   }
+  
 
   return (
     <div className="product-container">

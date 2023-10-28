@@ -1,0 +1,52 @@
+.cart-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+  }
+  
+  .cart-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .cart-table th,
+  .cart-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .cart-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .edit-button,
+  .delete-button {
+    padding: 6px 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .delete-button {
+    background-color: #f44336;
+  }
+  
+  .edit-button:hover,
+  .delete-button:hover {
+    opacity: 0.8;
+  }
+  
+  .edit-button:focus,
+  .delete-button:focus {
+    outline: none;
+  }
+  
+  .product-image {
+    width: 50px; /* Ubah ukuran gambar sesuai keinginan Anda */
+    height: 50px; /* Ubah ukuran gambar sesuai keinginan Anda */
+  }
+  
