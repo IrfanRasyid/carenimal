@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router'; // Mengganti useHistory dengan useNavigate
 import Button from '../../components/Button/Button';

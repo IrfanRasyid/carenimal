@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const url = process.env.URL_APP;
+const product = process.env.PRODUCT_API;
 export const getProduct = () => {
-    return fetch(`${url}`, {
+    return fetch(`${product}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -11,7 +11,7 @@ export const getProduct = () => {
 }
 
 export const getProductWithID = (id) => {
-    return fetch(`${url}/${id}`, {
+    return fetch(`${product}/${id}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
