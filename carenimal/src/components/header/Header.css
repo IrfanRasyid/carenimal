@@ -36,7 +36,13 @@
 .cart {
     color: white;
     margin-left: auto;
-    margin-right: 20px;
+    margin-right: auto;
+}
+
+.chat {
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .logo {

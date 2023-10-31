@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
-import "./Cart.css"; // Import file CSS untuk gaya khusus Cart
+import "./Cart.css";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
 
-  const productName = searchParams.get("productName");
-  const productPrice = searchParams.get("productPrice");
-  const productImage = searchParams.get("productImage");
-  const quantity = parseInt(searchParams.get("quantity"));
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
+  const [productImage, setProductImage] = useState("");
+  const [quantity, setQuantity] = useState(0);
 
   const [paymentMethods, setPaymentMethods] = useState([]);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
@@ -19,9 +20,19 @@ const Cart = () => {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
+    const dataFromStorage = JSON.parse(localStorage.getItem("dataForReceipt"));
+    if (dataFromStorage) {
+      setProductName(dataFromStorage.productName);
+      setProductPrice(dataFromStorage.productPrice);
+      setProductImage(dataFromStorage.productImage);
+      setQuantity(dataFromStorage.quantity);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchPaymentMethods = async () => {
       try {
-        const response = await axios.get("https://653cd85cd5d6790f5ec85982.mockapi.io/paymentMethod");
+        const response = await axios.get(import.meta.env.VITE_PAYMENT_API);
         setPaymentMethods(response.data);
       } catch (error) {
         console.error("Error fetching payment methods: ", error);
@@ -46,13 +57,50 @@ const Cart = () => {
     setCart(updatedCart);
   };
 
-  const handleAddToCart = () => {
-    const product = {
-      name: productName,
-      price: productPrice,
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newQuantity, setNewQuantity] = useState(0);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSaveQuantity = () => {
+    if (!isNaN(newQuantity)) {
+      handleQuantityChange(newQuantity);
+      setIsModalOpen(false);
+    }
+  };
+
+  const handleSaveDataForReceipt = () => {
+    const dataForReceipt = {
+      productName: productName,
+      productImage: productImage,
+      productPrice: productPrice,
       quantity: quantity,
+      totalPrice: totalPrice,
+      selectedPaymentMethod: selectedPaymentMethod,
+      methodPrice: methodPrice,
     };
-    setCart([...cart, product]);
+
+    localStorage.setItem("dataForReceipt", JSON.stringify(dataForReceipt));
+
+    const receiptUrl = "/transaction-receipt";
+    window.location.href = receiptUrl;
+  };
+
+  const handleDeleteItem = () => {
+    // Lakukan operasi penghapusan di sini
+    setProductName("");
+    setProductPrice("");
+    setProductImage("");
+    setQuantity("");
+    setTotalPrice("");
+    setSelectedPaymentMethod("");
+    setMethodPrice("");
   };
 
   return (
@@ -61,7 +109,6 @@ const Cart = () => {
       <table className="table">
         <thead>
           <tr>
-            <th>Label</th>
             <th>Nama Produk</th>
             <th>Gambar</th>
             <th>Harga</th>
@@ -72,37 +119,53 @@ const Cart = () => {
         </thead>
         <tbody>
           <tr>
-            <td>1</td>
             <td>{productName}</td>
             <td>
-              <img src={productImage} alt={productName} style={{ width: "50px", height: "50px" }} />
+              <img
+                src={productImage}
+                alt={productName}
+                style={{ width: "50px", height: "50px" }}
+              />
             </td>
             <td>Rp. {productPrice}</td>
             <td>{quantity}</td>
             <td>
-              <button
-                className="btn btn-primary"
-                onClick={() => {
-                  const newQuantity = parseInt(prompt("Edit jumlah produk:", quantity), 10);
-                  if (!isNaN(newQuantity)) {
-                    handleQuantityChange(newQuantity);
-                  }
-                }}
-              >
+              <button className="btn btn-primary" onClick={handleOpenModal}>
                 Edit
               </button>
+              {isModalOpen && (
+                <div className="modal-container">
+                  <div className="modal-content">
+                    <h2>Edit Jumlah Produk</h2>
+                    <input
+                      type="number"
+                      value={newQuantity}
+                      onChange={(e) => setNewQuantity(e.target.value)}
+                    />
+                    <div className="button-container">
+                      <button className="save-button" onClick={handleSaveQuantity}>
+                        Simpan
+                      </button>
+                      <button className="cancel-button" onClick={handleCloseModal}>
+                        Batal
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </td>
             <td>
-              <button className="btn btn-danger" onClick={() => handleProductDelete(productName)}>
+            <button
+                className="btn btn-danger"
+                onClick={handleDeleteItem} // Tambahkan pemanggilan fungsi handleDeleteItem
+              >
                 Delete
               </button>
             </td>
           </tr>
         </tbody>
       </table>
-      <div className="total-price">Total Harga: Rp. {totalPrice}</div>
-      <div className="payment-section mt-4">
-        <label htmlFor="payment-method">Metode Pembayaran:</label>
+      <label htmlFor="payment-method">Metode Pembayaran:</label>
         <select
           className="form-select"
           value={selectedPaymentMethod}
@@ -121,8 +184,17 @@ const Cart = () => {
             </option>
           ))}
         </select>
+
+      <div className="total-price">Total Harga: Rp. {totalPrice}</div>
+      <div className="payment-section mt-4">
+       
       </div>
+      <button className="btn btn-primary" onClick={handleSaveDataForReceipt} disabled={!productName}>
+        Simpan Data untuk Receipt
+      </button>
+      <Link className='btn btn-primary' to="/">Tambah Item Lain</Link>
     </div>
+    
   );
 };
 

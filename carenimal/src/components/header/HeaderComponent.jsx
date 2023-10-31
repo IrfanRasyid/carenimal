@@ -4,7 +4,7 @@ import Logo from '../../assets/img/logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
 
 function HeaderComponent() {
     return (
@@ -16,6 +16,9 @@ function HeaderComponent() {
                 <div className="d-flex gap-2">
             <Link to="/cart" className="btn">
                 <FontAwesomeIcon icon={faCartShopping} className='cart'/>
+                    </Link>
+                    <Link to="/chat" className="btn">
+                    <FontAwesomeIcon icon={faMessage} className='chat'/>
                     </Link>
                     <div className="profile">
                     <FontAwesomeIcon icon={faUser} />

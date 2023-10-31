@@ -43,9 +43,22 @@
 .purchase-button {
   background-color: #28a745;
   color: #fff;
+
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+  margin-left: 20px;
+  margin-right: auto;
+}
+
+.purchase-button2 {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-left: 20px;
+  margin-right: auto;
 }
 
 .product-image {
