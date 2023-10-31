@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import axios from "axios";
 import "./Cart.css";
 import { Link } from "react-router-dom";
+import filteredData from "../HomePage"
+import Card from "../../components/card/Card";
 
 const Cart = () => {
   const location = useLocation();
@@ -193,6 +195,11 @@ const Cart = () => {
         Simpan Data untuk Receipt
       </button>
       <Link className='btn btn-primary' to="/">Tambah Item Lain</Link>
+      <br/>
+      <h1>Kamu Mungkin Juga Suka</h1>
+      <div className="container xs={1} md={2} lg={4} g-4">
+        <Card data={filteredData} />
+      </div>
     </div>
     
   );

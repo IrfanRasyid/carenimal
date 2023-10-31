@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../../redux/cartSlice";
 import "./DetailProduct.css";
+import filteredData from "../HomePage"
+import Card from "../../components/card/Card";
 
 function DetailProduct() {
   const dispatch = useDispatch();
