@@ -20,7 +20,8 @@ function App() {
           <Route exact path="/cart" element={<CartPage />} />
           <Route path="/search-result" element={<SearchResult />} /> 
           <Route path="/chat" element={<ChatBox />} />
-          <Route path="/transaction-receipt" element={<TransactionReceipt />} /> {/* Ubah component menjadi element */}
+          <Route path="/transaction-receipt" element={<TransactionReceipt />} />
+          <Route path="/search-result" element={<SearchResult />} />
         </Routes>
       </LayoutComponent>
     </BrowserRouter>

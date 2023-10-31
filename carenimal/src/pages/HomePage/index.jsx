@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import Header from '../../components/Header/HeaderComponent';
-import Footer from '../../components/Footer/FooterComponent';
 import BannerImage from '../../assets/img/image1.png';
 import BannerImage2 from '../../assets/img/image2.png';
 import BannerImage3 from '../../assets/img/image3.png';
 import Card from '../../components/Card/Card';
+import { Link } from 'react-router-dom'
 
 function HomePage() {
     const [data, setData] = useState([]);
@@ -33,15 +32,12 @@ function HomePage() {
             item.name.toLowerCase().includes(search.toLowerCase())
         );
         setFilteredData(filtered);
-    };    
+        window.location.href = `/search?query=${search}`; // If you are not using React Router
+    };
 
     const handleInputChange = (e) => {
         setSearch(e.target.value);
     };
-
-
-    
-
     return (
         <>
             <div className="hero min-h-screen bg-base-200">
