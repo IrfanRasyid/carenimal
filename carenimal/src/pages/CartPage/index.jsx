@@ -31,6 +31,8 @@ const Cart = () => {
     }
   }, []);
 
+
+
   useEffect(() => {
     const fetchPaymentMethods = async () => {
       try {
@@ -54,10 +56,6 @@ const Cart = () => {
     setQuantity(newQuantity);
   };
 
-  const handleProductDelete = (productName) => {
-    const updatedCart = cart.filter((item) => item.name !== productName);
-    setCart(updatedCart);
-  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newQuantity, setNewQuantity] = useState(0);
