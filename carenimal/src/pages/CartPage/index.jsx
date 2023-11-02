@@ -142,7 +142,7 @@ const Cart = () => {
                     <input
                       type="number"
                       value={newQuantity}
-                      onChange={(e) => setNewQuantity(e.target.value)}
+                      onChange={(e) => setNewQuantity(Number(e.target.value))}
                     />
                     <div className="button-container">
                       <button className="save-button" onClick={handleSaveQuantity}>
@@ -191,7 +191,7 @@ const Cart = () => {
       <div className="payment-section mt-4">
        
       </div>
-      <button className="btn btn-primary" onClick={handleSaveDataForReceipt} disabled={!productName}>
+      <button className="btn btn-primary" onClick={handleSaveDataForReceipt} disabled={!productName, !paymentMethods}>
         Simpan Data untuk Receipt
       </button>
       <Link className='btn btn-primary' to="/">Tambah Item Lain</Link>
