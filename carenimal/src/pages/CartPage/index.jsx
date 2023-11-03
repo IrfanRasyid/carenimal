@@ -36,15 +36,16 @@ const Cart = () => {
   useEffect(() => {
     const fetchPaymentMethods = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_PAYMENT_API);
+        const response = await axios.get(process.env.VITE_PAYMENT_API);
         setPaymentMethods(response.data);
       } catch (error) {
         console.error("Error fetching payment methods: ", error);
       }
     };
-
+  
     fetchPaymentMethods();
   }, []);
+  
 
   useEffect(() => {
     const productTotal = productPrice * quantity;
@@ -189,10 +190,10 @@ const Cart = () => {
       <div className="payment-section mt-4">
        
       </div>
-      <button className="btn btn-primary" onClick={handleSaveDataForReceipt} disabled={!productName, !paymentMethods}>
+      <button className="btn btn-primary purchase-button" onClick={handleSaveDataForReceipt} disabled={!productName, !paymentMethods}>
         Simpan Data untuk Receipt
       </button>
-      <Link className='btn btn-primary' to="/">Tambah Item Lain</Link>
+      <Link className='btn btn-primary purchase-button2' to="/">Tambah Item Lain</Link>
       <br/>
       <h1>Kamu Mungkin Juga Suka</h1>
       <div className="container xs={1} md={2} lg={4} g-4">

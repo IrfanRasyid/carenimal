@@ -4,7 +4,8 @@ import './ChatBox.css'; // File CSS untuk ChatBox
 import OpenAI from 'openai'; // Import OpenAI
 
 const openai = new OpenAI({
-  apiKey: meta.env.VITE_OPENAI_API_KEY,
+  // apiKey: process.env.OPENAI_API_KEY,
+  apiKey: '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',
   dangerouslyAllowBrowser: true,
 });
 
