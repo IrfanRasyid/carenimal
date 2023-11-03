@@ -191,7 +191,7 @@ const Cart = () => {
        
       </div>
       <button className="btn btn-primary purchase-button" onClick={handleSaveDataForReceipt} disabled={!productName, !paymentMethods}>
-        Simpan Data untuk Receipt
+        Cetak Bukti Pembayaran
       </button>
       <Link className='btn btn-primary purchase-button2' to="/">Tambah Item Lain</Link>
       <br/>
